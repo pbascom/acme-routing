@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Acme Routing</string>
+    <string name="title_activity_router">Match Routes</string>
+</resources>
