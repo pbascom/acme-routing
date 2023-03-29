@@ -1,4 +1,4 @@
-package com.bas.acmerouting.ui.theme
+package com.bas.acmerouting.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

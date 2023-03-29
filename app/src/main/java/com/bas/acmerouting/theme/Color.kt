@@ -1,4 +1,4 @@
-package com.bas.acmerouting.router.ui.theme
+package com.bas.acmerouting.theme
 
 import androidx.compose.ui.graphics.Color
 

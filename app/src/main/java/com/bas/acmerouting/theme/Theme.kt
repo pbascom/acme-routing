@@ -1,4 +1,4 @@
-package com.bas.acmerouting.ui.theme
+package com.bas.acmerouting.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
