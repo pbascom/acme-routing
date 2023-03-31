@@ -13,13 +13,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bas.acmerouting.router.RouterActivity
+import com.bas.acmerouting.shipment.ShipmentActivity
 import com.bas.acmerouting.theme.AcmeRoutingTheme
 
 /**
- * Acme Routing is built to use a Compose UI. The Compose Navigation component allows us to display
- * arbitrary screens in any given Activity, so we don't need to use Activities to encapsulate
- * regions of the UI.
+ * Acme Routing is built to use a Compose UI. The Compose Navigation component lets us separate UI
+ * boundaries from Activity boundaries, so we don't need to have a one-to-one correlation between
+ * our Activities (or even our Fragments) and our screens.
  *
  * Instead, we'll be using Activities to represent logical or architectural boundaries. We'll draw
  * those boundaries wherever makes the most sense to maximize ease of development.
@@ -32,6 +32,17 @@ import com.bas.acmerouting.theme.AcmeRoutingTheme
  * submodules (or a jFrog Artifactory) to pull components together into a single application when
  * it's time to bundle for release. The Foundations team will also be responsible for maintaining
  * a package of core functionality, UI elements, etc, which all other teams can import and depend on.
+ *
+ * This has two primary benefits. First, it lets teams be more autonomous; each team has a limited
+ * ability to depend on other teams, and so they have ability to interfere with each others' work.
+ * Each team can apply its own agreed-on best practices without worrying about how other teams are
+ * doing it.
+ *
+ * Second, as the project scales, this modular approach keeps build times low for feature teams. I've
+ * been on projects where it takes upwards of forty minutes to do a clean build of the application,
+ * and even after throwing the most expensive hardware we could find at the problem, it never got
+ * below five or so minutes per build. That kind of lag time is incredibly demoralizing and kills your
+ * creativity; it also makes the red-green-refactor cycle of TDD completely impossible.
  *
  * This MainActivity represents the Launcher Activity maintained by the Foundations team. Its primary
  * purpose is to route users towards feature flows as necessary. (In a mature application, this may
@@ -52,7 +63,7 @@ class LauncherActivity : ComponentActivity() {
 
     private fun launchRouterActivity() {
         startActivity(
-            Intent(this, RouterActivity::class.java)
+            Intent(this, ShipmentActivity::class.java)
         )
     }
 

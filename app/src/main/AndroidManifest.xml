@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AcmeRouting"
         tools:targetApi="31">
         <activity
-            android:name=".router.RouterActivity"
+            android:name=".shipment.ShipmentActivity"
             android:exported="false"
             android:label="@string/title_activity_router"
             android:theme="@style/Theme.AcmeRouting" />

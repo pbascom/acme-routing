@@ -1,4 +1,4 @@
-package com.bas.acmerouting.router
+package com.bas.acmerouting.shipment
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -20,19 +20,19 @@ import com.bas.acmerouting.theme.AcmeRoutingTheme
  * This Activity represents the UI for the Routing feature, and is maintained by the Routing team.
  * See [com.bas.acmerouting.launcher.LauncherActivity] for an explanation.
  */
-class RouterActivity : ComponentActivity() {
+class ShipmentActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AcmeRoutingTheme {
-                RouterUi()
+                ShipmentUi()
             }
         }
     }
 }
 
 @Composable
-fun RouterUi() {
+fun ShipmentUi() {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
@@ -59,6 +59,6 @@ fun RouterUi() {
 @Composable
 fun DefaultPreview2() {
     AcmeRoutingTheme {
-        RouterUi()
+        ShipmentUi()
     }
 }
