@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -15,6 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.bas.acmerouting.shipment.composables.ShipmentDetailUi
 import com.bas.acmerouting.shipment.data.Driver
 import com.bas.acmerouting.shipment.data.Route
 import com.bas.acmerouting.shipment.viewmodel.ShipmentsViewModel
@@ -35,7 +43,21 @@ class ShipmentActivity : ComponentActivity() {
         viewModel.shipmentsData.observe(this) { shipments ->
             setContent {
                 AcmeRoutingTheme {
-                    ShipmentUi(shipments)
+                    val navController = rememberNavController()
+                    NavHost(navController = navController, startDestination = "shipmentsList" ) {
+                        composable("shipmentsList") { ShipmentsListUi(navController, shipments)}
+                        composable("shipmentDetail/{driverName}/{routeDestination}",
+                            arguments = listOf(
+                                navArgument("driverName") {type = NavType.StringType},
+                                navArgument("routeDestination") {type = NavType.StringType}
+                            )
+                        ) { backStackEntry ->
+                            ShipmentDetailUi(
+                                driverName = backStackEntry.arguments?.getString("driverName") ?: "Error",
+                                routeDestination = backStackEntry.arguments?.getString("routeDestination") ?: "Nowhere"
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -43,7 +65,7 @@ class ShipmentActivity : ComponentActivity() {
 }
 
 @Composable
-fun ShipmentUi(shipments: Map<Driver, Route>) {
+fun ShipmentsListUi(navController: NavController, shipments: Map<Driver, Route>) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
@@ -62,8 +84,14 @@ fun ShipmentUi(shipments: Map<Driver, Route>) {
                 modifier = Modifier.fillMaxWidth(),
                 contentPadding = PaddingValues(8.dp)
             ) {
+                // This should be items(), rather than itemsIndexed, but Android Studio is refusing
+                // to recognize the right overload of the items method. Rather than spend another
+                // hour figuring out why, I'm using a function which always takes a List. In a
+                // production app, I'd invest the time, though.
                 itemsIndexed(shipments.entries.toList()) { _, entry ->
-                    ShipmentItem(driver = entry.key, route = entry.value)
+                    ShipmentItem(driver = entry.key, route = entry.value) {
+                        navController.navigate("shipmentDetail/${entry.key.name}/${entry.value.destination}")
+                    }
                 }
             }
         }
@@ -71,8 +99,11 @@ fun ShipmentUi(shipments: Map<Driver, Route>) {
 }
 
 @Composable
-fun ShipmentItem(driver: Driver, route: Route) {
-    Text("${driver.name} should go to ${route.destination}")
+fun ShipmentItem(driver: Driver, route: Route, onClick: () -> Unit) {
+    Text(
+        modifier = Modifier.clickable(onClick = onClick),
+        text ="${driver.name} should go to ${route.destination}"
+    )
 }
 
 @Preview(
@@ -81,9 +112,10 @@ fun ShipmentItem(driver: Driver, route: Route) {
     showBackground = true
 )
 @Composable
-fun DefaultPreview2() {
+fun ShipmentsListPreview() {
     AcmeRoutingTheme {
-        ShipmentUi(
+        ShipmentsListUi(
+            rememberNavController(),
             hashMapOf(
                 Driver("The Muffin Man") to Route("123 Drury Lane"),
                 Driver("Big Bird") to Route("Sesame Street"),

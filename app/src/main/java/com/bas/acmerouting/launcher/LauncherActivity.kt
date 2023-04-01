@@ -110,7 +110,7 @@ private fun LauncherUi(
     showBackground = true
 )
 @Composable
-fun DefaultPreview() {
+fun LauncherPreview() {
     AcmeRoutingTheme {
         LauncherUi({})
     }
