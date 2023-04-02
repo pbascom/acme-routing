@@ -1,7 +1,5 @@
 package com.bas.acmerouting.shipment.data
 
-import com.google.gson.annotations.SerializedName
-
 /**
  * The Repository interface is responsible for retrieving the list of shipments from storage and
  * providing them to the UI. In this case, "storage" is an assets file, but there's no reason for
@@ -13,9 +11,9 @@ import com.google.gson.annotations.SerializedName
  * shipments, while the BFF services would focus on providing those matched pairs efficiently to
  * multiple clients at scale, and the client would provide only the UI.
  *
- * In a real application, I would therefore expect to get (ideally) a single Route object for this
- * particular logged-in Driver, or at worst a map of (Driver, Route) pairs. The specifications of
- * this coding exercise make that impossible, but I'm going to build a Repository with an Adapter
+ * In a real application, I would therefore expect to get (ideally) a single Destination object for
+ * this particular logged-in Driver, or at worst a map of (Driver, Destination) pairs. The specifications
+ * of this coding exercise make that impossible, but I'm going to build a Repository with an Adapter
  * layer which will allow me to act like I'm designing against my ideal network stack, anyway.
  *
  * This has two main benefits: 1, I get to write cleaner code with well-separated business rules
@@ -24,19 +22,6 @@ import com.google.gson.annotations.SerializedName
  * the new contract.
  */
 interface ShipmentRepository {
-    suspend fun getShipments() : Map<Driver, Route>
+    suspend fun getShipments() : Map<Driver, Destination>
 }
 
-data class Route(
-    val destination: String
-)
-
-data class Driver(
-    val name: String
-)
-
-data class ShipmentResponse(
-    @SerializedName("shipments")
-    val routes: List<String>,
-    val drivers: List<String>
-)

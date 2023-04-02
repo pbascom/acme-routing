@@ -12,12 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bas.acmerouting.shipment.data.Driver
-import com.bas.acmerouting.shipment.data.Route
 import com.bas.acmerouting.theme.AcmeRoutingTheme
 
 @Composable
-fun ShipmentDetailUi(driverName: String, routeDestination: String) {
+fun ShipmentDetailUi(driverName: String, destinationAddress: String) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
@@ -35,7 +33,7 @@ fun ShipmentDetailUi(driverName: String, routeDestination: String) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
-                text = "You should go to ${routeDestination}."
+                text = "You should go to ${destinationAddress}."
             )
             Text(
                 modifier = Modifier.fillMaxWidth(),
@@ -56,7 +54,7 @@ fun ShipmentDetailPreview() {
     AcmeRoutingTheme {
         ShipmentDetailUi(
             driverName= "The Muffin Man",
-            routeDestination = "123 Drury Lane"
+            destinationAddress = "123 Drury Lane"
         )
     }
 }

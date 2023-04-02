@@ -13,13 +13,14 @@ import kotlinx.coroutines.withContext
  * a Context object at creation. Later on we'll supply this dependency through Dagger.
  */
 class LocalShipmentRepository(
-    val context: Context //TODO: Inject
+    val context: Context //TODO: Inject with Dagger
 ): ShipmentRepository {
+
     val adapter = DriverMatchingUtility()
 
-    val gson = Gson() //TODO: Inject
+    val gson = Gson()
 
-    override suspend fun getShipments(): Map<Driver, Route> {
+    override suspend fun getShipments(): Map<Driver, Destination> {
         // There's no error handling right now
         var response: ShipmentResponse
         withContext(Dispatchers.IO) {

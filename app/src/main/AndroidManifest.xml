@@ -16,7 +16,7 @@
         <activity
             android:name=".shipment.ShipmentActivity"
             android:exported="false"
-            android:label="@string/title_activity_router"
+            android:label="@string/title_activity_shipment"
             android:theme="@style/Theme.AcmeRouting" />
         <activity
             android:name=".launcher.LauncherActivity"
