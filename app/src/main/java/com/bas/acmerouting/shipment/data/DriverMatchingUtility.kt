@@ -18,7 +18,7 @@ class DriverMatchingUtility {
         // as well. But, may as well get started.
 
         // We'll start by pulling the relevant metrics out of each data set.
-        val analyzedDrivers = response.drivers.map { driver ->AnalyzedDriver.create(driver) }
+        val analyzedDrivers = response.drivers.map { driver -> AnalyzedDriver.create(driver) }
         val analyzedDestinations = response.destinations.map { destination -> AnalyzedDestination.create(destination) }
 
         // So, if I understand the problem correctly, we would need to check every possible
@@ -66,7 +66,7 @@ class DriverMatchingUtility {
         return shipments
     }
 
-    private fun computeSuitabilityScore(driver: AnalyzedDriver, destination: AnalyzedDestination): Float {
+    fun computeSuitabilityScore(driver: AnalyzedDriver, destination: AnalyzedDestination): Float {
         // If the length of the shipment's destination street name is even, the base suitability
         // score is the number of vowels in the driver's name multiplied by 1.5. If the length of
         // the shipment's destination street name is odd, the base suitability score is the number
@@ -81,8 +81,8 @@ class DriverMatchingUtility {
         var hasCommonFactor = false
         var factorToCheck = 2
         while( !hasCommonFactor
-            && factorToCheck <= driver.nameLength/2
-            && factorToCheck <= destination.streetNameLength/2
+            && factorToCheck <= driver.nameLength
+            && factorToCheck <= destination.streetNameLength
         ) {
             if(driver.nameLength % factorToCheck == 0
                 && destination.streetNameLength % factorToCheck == 0
