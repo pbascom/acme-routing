@@ -1,36 +1,41 @@
 package com.bas.acmerouting.launcher.composables
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bas.acmerouting.R
 import com.bas.acmerouting.theme.AcmeRoutingTheme
 
 @Composable
 fun LauncherUi(
     onRouteShipmentsButtonClicked: () -> Unit
 ) {
-    Surface(
+    Scaffold(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colors.background
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(id = R.string.app_name)) },
+                navigationIcon = { Icon(imageVector = Icons.Filled.Menu, contentDescription = "") },
+                elevation = AppBarDefaults.TopAppBarElevation
+            )
+        }
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 8.dp, vertical = 16.dp),
+            verticalArrangement = Arrangement.SpaceBetween,
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text("Acme Routing")
-            }
+            Text(
+                style = MaterialTheme.typography.h5,
+                text = stringResource(id = R.string.launcher_page_body)
+            )
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
@@ -38,7 +43,7 @@ fun LauncherUi(
                 Button(
                     onClick = onRouteShipmentsButtonClicked
                 ) {
-                    Text("Route Shipments")
+                    Text(stringResource(id = R.string.launcher_page_button_text))
                 }
             }
         }

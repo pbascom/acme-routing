@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Acme Routing</string>
-    <string name="title_activity_shipment">Match Routes</string>
+    <string name="shipment_activity_title">Match Routes</string>
+    <string name="launcher_page_body">Welcome to Acme Routing! Please click below to see assigned shipments.</string>
+    <string name="launcher_page_button_text">Route Shipments</string>
+    <string name="shipment_list_page_title">Route Shipments</string>
+    <string name="shipment_list_page_explanation">Choose a driver from the list to see where they should go.</string>
+    <string name="shipment_details_page_title">"Shipment Details"</string>
 </resources>
