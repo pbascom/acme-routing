@@ -17,7 +17,11 @@ Once you've cloned the repository onto your development machine, open it in Andr
 ### With an Emulator
 1. If you don't already have an Android Emulator installed on your machine, [create an AVD](https://developer.android.com/studio/run/managing-avds#createavd). Make sure you choose a release with an API Level of at least 24.
 2. Once your emulator is installed, select it from the build target dropdown:
+<img width="413" alt="Screen Shot 2023-04-03 at 3 52 35 PM" src="https://user-images.githubusercontent.com/8560089/229615540-8f877872-b486-43aa-a624-230fd075302d.png">
+
 3. Make sure 'app' is selected from the Run/Debug dropdown. It should look like this:
+<img width="273" alt="Screen Shot 2023-04-03 at 3 54 38 PM" src="https://user-images.githubusercontent.com/8560089/229615572-ae9e5e6c-3ac0-47ae-bfe7-a18a6eb093ee.png">
+
 4. Finally, click the green "Run" arrow.
 5. In a few moments, your emulator should start and the app should install and run.
 6. Enjoy!
@@ -26,7 +30,11 @@ Once you've cloned the repository onto your development machine, open it in Andr
 1. Using a physical device is only slightly more complicated. First, you'll need to [enable Developer Options](https://developer.android.com/studio/debug/dev-options) on the device.
 2. Next, you should connect your device to your development machine using a physical cable. A dialogue should pop up on your device asking you to enable USB debugging; click "accept."
 3. In Android Studio, you should see your physical device in the build target dropdown:
+<img width="413" alt="Screen Shot 2023-04-03 at 3 52 35 PM" src="https://user-images.githubusercontent.com/8560089/229615540-8f877872-b486-43aa-a624-230fd075302d.png">
+
 4. Make sure your device is connected, and make sure that 'app' is selected from the Run/Debug dropdown. It should look like this:
+<img width="273" alt="Screen Shot 2023-04-03 at 3 54 38 PM" src="https://user-images.githubusercontent.com/8560089/229615572-ae9e5e6c-3ac0-47ae-bfe7-a18a6eb093ee.png">
+
 5. Click the green "Run" arrow.
 6. In a few moments, the app should install and launch on your device. Enjoy!
 
